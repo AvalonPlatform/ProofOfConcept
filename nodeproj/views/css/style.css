@@ -1,0 +1,141 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100');
+
+body{
+	height:100%;
+	width: 100%;
+	background-image:url(../image/main%20content.jpg);
+	font-family: 'Roboto', sans-serif;
+	padding-bottom:20px;
+}
+.container {
+	padding-top: 50px;
+}
+.heading-text{
+	text-align:center;
+	color: #ffffff;	
+	margin-bottom: 30px;
+}
+h1 span {
+	font-size: 14px;
+}
+.hori-line {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.sub-text {
+	color: #c6c6c6;
+}
+.button1 {
+	text-align: center;
+	margin-bottom: 15px;
+}
+.btn-primary {
+	font-size: 16px;
+	font-weight: 700;
+	padding: 8px 22px;
+	background-color: #5f8bee;
+	border-color: #5f8bee;
+	border-radius: 10px;
+	box-shadow: 0px 3px 4px rgba(0,0,0,.5);
+}
+.btn-primary:hover {
+	background-color: #4e73c4;
+	border-color: #4e73c4;
+}
+.button2 {
+	text-align: center;
+}
+.btn.btn-success {
+	font-size: 16px;
+	font-weight: 700;
+	padding: 8px 11px;
+	background-color: #30c193;
+	border-color: #30c193;
+	border-radius: 10px;
+	box-shadow: 0px 3px 4px rgba(0,0,0,.5);
+}
+.btn.btn-success:hover {
+	background-color: #2aae84;
+	border-color: #2aae84;
+}
+/* Unlock page & Get page */
+.subline-text {
+	text-align: center;
+	color: #ffffff;
+	font-size: 16px;
+	padding-bottom: 20px;
+}
+
+.button3 {
+	margin-top: 30px;
+}
+.w3-btn.btn.btn-default {
+	background-color: transparent;
+	border-color: #ffffff;
+	border-radius: 6px;
+	color: #ffffff;
+}
+
+/*=========== top unlock page =========*/
+.box {
+	margin: 0 auto;
+	text-align: center;
+	border: 1px solid;
+	padding: 15px;
+	width: 250px;
+	color: #ffffff;
+	border-radius: 6px;
+	min-height: 220px;
+}
+
+iframe, embed, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+#ytaa {
+    display: none;
+}
+
+.vid {
+	  position: absolute;
+  width: 50%;
+   padding-top: 20%;
+   margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	
+    max-width: 1280px;
+    object-fit: cover;
+    z-index: 1;
+    background-color: black;
+	padding-bottom = 40%;
+	
+	}
+
+.auto-resizable-iframe {
+  max-width: 750px;
+  margin: 0px auto;
+}
+
+.auto-resizable-iframe > div {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0px;
+}
+
+.auto-resizable-iframe iframe {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}

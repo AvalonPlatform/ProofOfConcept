@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="./css/style.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Avalon</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<img src="./image/logo.png" class="img-responsive" alt="logo" />
+			</div>
+			<div class="col-md-9">
+			</div>
+		</div>
+
+		<!-- ========== LOGO END ========== -->
+		<div class="row">
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-8">
+				<h1 class="heading-text">Welcome to the Avalon Platform <span>(proof of concept)</span></h1>
+			</div>
+			<div class="col-md-2">
+			</div>
+		</div>
+		<!-- ========== TOP HEADING END ========== -->
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-6">
+				<div class="button1" id="get1">
+					<a class="w3-btn btn btn-primary">
+					Get Discount List
+				</a>
+				</div>
+			</div>
+			<div class="col-md-3">
+			</div>
+		</div>
+		<!-- ========== BUTTON 1 END ========== -->
+
+
+		<div class="row hori-line">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<hr/>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-6">
+				<div class="button1" id="get2">
+					<a class="w3-btn btn btn-primary">
+					Get 10% Discount (1x use)<br/>
+				</a>
+				</div>
+			</div>
+			<div class="col-md-3">
+			</div>
+		</div>
+		<!-- ========== BUTTON 3 END ========== -->
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-6">
+				<div class="button3" style="text-align-last: justify">
+					<a href="http://avalon.nu" class="w3-btn btn btn-default">
+					Return to Avalon.nu
+				</a> &emsp;
+					<a id="tuto" class="w3-btn btn btn-default">
+					Proof of Concept tutorial video
+				</a>
+				</div>
+
+
+			</div>
+			<div class="col-md-3">
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="auto-resizable-iframe" id="tohide">
+			<div>
+				<iframe id="yt" src="https://www.youtube.com/embed/dBvf2HTlubs" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+
+	</div>
+	<script>
+		window.addEventListener('load', function () {
+			// Checking if Web3 has been injected by the browser (Mist/MetaMask)
+			if (typeof web3 !== 'undefined') {
+				// Use Mist/MetaMask's provider
+				window.web3 = new Web3(web3.currentProvider)
+			} else {
+				console.log('Unable to connect to Ethereum? You should consider trying MetaMask!');
+				// fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+				//			window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
+			}
+		})
+
+
+		contractAddress = "0x76d177a05b4ddc8d398e09ecd4ea51527af7d1de";
+		ABIArray = [{"constant":true,"inputs":[{"name":"addr","type":"address"},{"name":"subscriptionNumber","type":"uint8"}],"name":"querySubscription","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"subscriptionNumber","type":"uint8"}],"name":"subscribe","outputs":[],"payable":true,"type":"function"},{"constant":false,"inputs":[],"name":"finishSubscribing","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"subscriptionNumber","type":"uint8"},{"name":"cost","type":"uint256"}],"name":"setSubscriptionCost","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"subscribingFinished","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"subscriptionNumber","type":"uint8"}],"name":"unsubscribe","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"subscriber","type":"address"},{"indexed":false,"name":"subscriptionNumber","type":"uint8"}],"name":"SubsLog","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"subscriber","type":"address"},{"indexed":false,"name":"subscriptionNumber","type":"uint8"}],"name":"UnsubsLog","type":"event"}];
+
+		window.onload = function () {
+			document.getElementById("get1").onclick = function () { btnList(0) };
+			document.getElementById("get2").onclick = function () { btnList(1) };
+			document.getElementById("tuto").onclick = function () { tuto(1) };
+
+
+				function btnList(ListNum) {
+					if (typeof web3 !== 'undefined') {
+						if (isAddress(web3.eth.accounts[0])) {
+							method = "post"; // Set method to post by default if not specified.
+							item = {};
+							item["address"] = web3.eth.accounts[0];
+							item["IDlist"] = ListNum;
+							path = "/"
+
+							var form = document.createElement("form");
+							form.setAttribute("method", method);
+							form.setAttribute("action", path);
+
+							for (var key in item) {
+								if (item.hasOwnProperty(key)) {
+									var hiddenField = document.createElement("input");
+									hiddenField.setAttribute("type", "hidden");
+									hiddenField.setAttribute("name", key);
+									hiddenField.setAttribute("value", item[key]);
+
+									form.appendChild(hiddenField);
+								}
+							}
+
+							document.body.appendChild(form);
+							form.submit();
+						} else {
+							alert("No ethereum wallet available. Check your MetaMask/Mist client.");
+
+						}
+					} else {
+						alert('Unable to connect to Ethereum. You should consider trying MetaMask or Mist.');
+
+					}
+
+				}
+
+
+
+			var isAddress = function (address) {
+				// function isAddress(address) {
+				if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+					// check if it has the basic requirements of an address
+					return false;
+				} else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+					// If it's all small caps or all all caps, return "true
+					return true;
+				} else {
+					// Otherwise check each case
+					return isChecksumAddress(address);
+				}
+			}
+
+
+			var isChecksumAddress = function (address) {
+				// Check each case
+				address = address.replace('0x', '');
+				var addressHash = web3.sha3(address.toLowerCase());
+				for (var i = 0; i < 40; i++) {
+					// the nth letter should be uppercase if the nth digit of casemap is 1
+					if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
+						return false;
+					}
+				}
+				return true;
+			}
+
+
+			function tuto() {
+				node = document.getElementById("tohide")
+				node.style.display = "block";
+				node.scrollIntoView({ behaviour: 'smooth', block: 'end' });
+				vid = document.getElementById("yt")
+				yt.src += "?autoplay=1";
+			}
+		}
+	</script>
+
+</body>
+
+</html>
