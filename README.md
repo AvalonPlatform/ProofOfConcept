@@ -10,7 +10,7 @@ You will find in this repo all code used to realize the [PoC](http://158.69.207.
 
 ## Description
 This proof of concept prototype consists of 2 parts:
-- A Server node.js: This server is centralized in this demonstration but nothing prevents it of becoming decentralized later with swarm or Whisper
+- A Server node.js: This server is centralized in this demonstration but nothing prevents it of becoming decentralized later with Swarm or Whisper
 - A smart contract deployed on the Rinkeby test network
 
 Users are autonomous to interact with the smart contract and subscribe to services that interest them.
