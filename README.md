@@ -3,7 +3,7 @@
 You will find in this repo all code used to realize the [PoC](http://158.69.207.152:8765/).
 
 ## Features and design goals
-- Demonstrate how decentralized applications (�app) can be useful in achieving benefits
+- Demonstrate how decentralized applications (Ðapp) can be useful in achieving benefits
 - Best practices: Smart contracts are written with the latest best practices of Ethereum community
 - Testable: We aim for 100% branch code coverage by automated test suite
 - Auditable: Our tool chain supports verifiable EtherScan.io contract builds
